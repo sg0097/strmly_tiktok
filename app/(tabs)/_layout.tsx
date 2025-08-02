@@ -6,9 +6,11 @@ import { Text } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import {View} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import {useRouter} from 'expo-router';
 
-
+ 
 export default function TabLayout() {
+  const router = useRouter();
   return (
     <Tabs
       screenOptions={{
@@ -19,7 +21,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{ 
-          title: 'Home', 
+           title:'Home',
           tabBarIcon: ({focused}) => <Ionicons name= {focused ? "home-sharp":"home-outline"} size={24} color="black" />, }}
       />
       {/* Add more tab screens here */}
@@ -28,13 +30,19 @@ export default function TabLayout() {
         options={{ title: 'friends', tabBarIcon: ({focused}) => <Ionicons name= {focused ? "people":"people-outline"} size={24} color="black" /> }}
       />
         <Tabs.Screen
-        name="camera"
+        name="empty"
         options={{ 
-          title: 'camera', 
-          tabBarIcon: ({focused}) => 
+          title: '', 
+          tabBarIcon: () => 
           <View className="absolute ">
             <Ionicons name="add-circle" size={32} color="black" alignment='centre' /> 
         </View>, 
+        }}
+        listeners={{
+          tabPress: (e) => {
+            e.preventDefault();
+            router.push('/camera');
+          }
         }}
       />
       <Tabs.Screen

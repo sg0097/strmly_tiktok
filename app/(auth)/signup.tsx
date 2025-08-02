@@ -8,6 +8,10 @@ import { TextInput } from 'react-native';
 import {supabase} from '@/utils/supabase';
 import { useAuth } from '@/providers/AuthProvider'; // Import the useAuth hook
  // Adjust the import based on your project structure
+import { router } from 'expo-router';
+
+
+
 export default function () {
     const router = useRouter();
     const [email,setEmail] = React.useState('');

@@ -1,14 +1,12 @@
-import React from 'react';
+import React, { use } from 'react';
 import "../../global.css";
 
-import { View, Text } from 'react-native';
+import { View, Text,TouchableOpacity,Image} from 'react-native';
+import { useAuth } from '@/providers/AuthProvider';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Profile from '@/components/profile';
+export default function(){
+  const{user,signOut,following,follower} = useAuth();
 
-export default function () {
-  return (
-    <View className=" flex-1 items-center justify-center bg-white">
-      <Text className='text-black font-bold text-3xl'>
-        Profile
-      </Text>
-    </View>
-  );
+  return <Profile user={user} following={following} follower={follower} />
 }
